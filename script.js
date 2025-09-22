@@ -1,25 +1,39 @@
 // DOM Elements
 const equipmentContainer = document.getElementById('equipmentContainer');
-const totalCostElement = document.getElementById('totalCost');
+const selectedTotalElement = document.getElementById('selectedTotal');
+const selectedCountElement = document.getElementById('selectedCount');
+const summaryItemCount = document.getElementById('summaryItemCount');
+const summaryTotal = document.getElementById('summaryTotal');
+const selectedItemsList = document.getElementById('selectedItemsList');
+const summaryToggle = document.getElementById('summaryToggle');
+const summaryContent = document.getElementById('summaryContent');
 const filterButtons = document.querySelectorAll('.filter-btn');
+
+// Selection control buttons
+const selectAllBtn = document.getElementById('selectAllBtn');
+const selectNoneBtn = document.getElementById('selectNoneBtn');
+const essentialPreset = document.getElementById('essentialPreset');
+const proPreset = document.getElementById('proPreset');
 
 // State
 let currentFilter = 'all';
+let selectedItems = new Set();
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     renderEquipment();
-    updateTotalCost();
     initializeFilters();
+    initializeSelectionControls();
     addScrollAnimations();
+    updateSelectionSummary();
 });
 
 // Render all equipment
 function renderEquipment() {
     const sortedCategories = Object.values(equipmentData).sort((a, b) => a.priority - b.priority);
-
+    
     equipmentContainer.innerHTML = '';
-
+    
     sortedCategories.forEach((category, index) => {
         const categorySection = createCategorySection(category, index);
         equipmentContainer.appendChild(categorySection);
@@ -31,17 +45,35 @@ function createCategorySection(category, index) {
     const section = document.createElement('div');
     section.className = `category-section category-${category.title.toLowerCase().replace(/\s+/g, '-')}`;
     section.style.animationDelay = `${index * 0.1}s`;
-
+    
     section.innerHTML = `
         <div class="category-header">
-            <span class="priority-badge">Priority ${category.priority}</span>
-            <h3 class="category-title">${category.title}</h3>
+            <div class="category-info">
+                <span class="priority-badge">Priority ${category.priority}</span>
+                <h3 class="category-title">${category.title}</h3>
+                <span class="category-total">(${category.total})</span>
+            </div>
+            <div class="category-actions">
+                <button class="category-select-all" data-category="${Object.keys(equipmentData).find(key => equipmentData[key] === category)}">
+                    <i class="fas fa-check"></i> Select All
+                </button>
+                <button class="category-select-none" data-category="${Object.keys(equipmentData).find(key => equipmentData[key] === category)}">
+                    <i class="fas fa-times"></i> Clear
+                </button>
+            </div>
         </div>
         <div class="items-grid">
             ${category.items.map(item => createEquipmentCard(item)).join('')}
         </div>
     `;
-
+    
+    // Add event listeners for category selection buttons
+    const selectAllCategoryBtn = section.querySelector('.category-select-all');
+    const selectNoneCategoryBtn = section.querySelector('.category-select-none');
+    
+    selectAllCategoryBtn.addEventListener('click', () => selectCategoryItems(category.items, true));
+    selectNoneCategoryBtn.addEventListener('click', () => selectCategoryItems(category.items, false));
+    
     return section;
 }
 
@@ -50,9 +82,17 @@ function createEquipmentCard(item) {
     const features = item.features.map(feature => 
         `<span class="feature-tag">${feature}</span>`
     ).join('');
-
+    
+    const isSelected = selectedItems.has(item.id);
+    
     return `
-        <div class="equipment-card" data-category="${item.category.toLowerCase()}">
+        <div class="equipment-card ${isSelected ? 'selected' : ''}" data-category="${item.category.toLowerCase()}" data-item-id="${item.id}">
+            <div class="card-selection">
+                <input type="checkbox" class="item-checkbox" id="item-${item.id}" ${isSelected ? 'checked' : ''}>
+                <label class="checkbox-label" for="item-${item.id}">
+                    <i class="fas fa-check"></i>
+                </label>
+            </div>
             <div class="card-image">
                 <img src="${item.image}" 
                      alt="${item.name}" 
@@ -86,16 +126,195 @@ function createEquipmentCard(item) {
     `;
 }
 
-// Update total cost
-function updateTotalCost() {
-    const total = calculateTotalCost();
-    totalCostElement.textContent = `${total.toLocaleString()} TND`;
+// Initialize selection controls
+function initializeSelectionControls() {
+    // Add click listeners to cards for selection
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.equipment-card') && !e.target.closest('.card-actions')) {
+            const card = e.target.closest('.equipment-card');
+            const itemId = parseInt(card.dataset.itemId);
+            const checkbox = card.querySelector('.item-checkbox');
+            
+            toggleItemSelection(itemId, !checkbox.checked);
+        }
+    });
+    
+    // Checkbox change listeners
+    document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('item-checkbox')) {
+            const itemId = parseInt(e.target.id.replace('item-', ''));
+            toggleItemSelection(itemId, e.target.checked);
+        }
+    });
+    
+    // Bulk action buttons
+    selectAllBtn.addEventListener('click', selectAllItems);
+    selectNoneBtn.addEventListener('click', clearAllSelections);
+    essentialPreset.addEventListener('click', selectEssentialKit);
+    proPreset.addEventListener('click', selectProfessionalKit);
+    
+    // Summary toggle
+    summaryToggle.addEventListener('click', toggleSummaryPanel);
+}
 
-    // Animate the cost update
-    totalCostElement.style.transform = 'scale(1.1)';
+// Toggle item selection
+function toggleItemSelection(itemId, isSelected) {
+    const card = document.querySelector(`[data-item-id="${itemId}"]`);
+    const checkbox = card.querySelector('.item-checkbox');
+    
+    if (isSelected) {
+        selectedItems.add(itemId);
+        card.classList.add('selected');
+        checkbox.checked = true;
+    } else {
+        selectedItems.delete(itemId);
+        card.classList.remove('selected');
+        checkbox.checked = false;
+    }
+    
+    updateSelectionSummary();
+}
+
+// Select all items
+function selectAllItems() {
+    const allItems = getAllItems();
+    allItems.forEach(item => {
+        selectedItems.add(item.id);
+        const card = document.querySelector(`[data-item-id="${item.id}"]`);
+        const checkbox = card.querySelector('.item-checkbox');
+        card.classList.add('selected');
+        checkbox.checked = true;
+    });
+    updateSelectionSummary();
+}
+
+// Clear all selections
+function clearAllSelections() {
+    selectedItems.clear();
+    document.querySelectorAll('.equipment-card').forEach(card => {
+        card.classList.remove('selected');
+        card.querySelector('.item-checkbox').checked = false;
+    });
+    updateSelectionSummary();
+}
+
+// Select category items
+function selectCategoryItems(items, select) {
+    items.forEach(item => {
+        const card = document.querySelector(`[data-item-id="${item.id}"]`);
+        const checkbox = card.querySelector('.item-checkbox');
+        
+        if (select) {
+            selectedItems.add(item.id);
+            card.classList.add('selected');
+            checkbox.checked = true;
+        } else {
+            selectedItems.delete(item.id);
+            card.classList.remove('selected');
+            checkbox.checked = false;
+        }
+    });
+    updateSelectionSummary();
+}
+
+// Select essential kit (minimum viable setup)
+function selectEssentialKit() {
+    clearAllSelections();
+    
+    // Essential items: one light, one battery setup, memory card
+    const essentialIds = [1, 2, 3, 4, 9, 14]; // GODOX LED, Stand, Softbox, Mic, basic battery, memory card
+    
+    essentialIds.forEach(id => {
+        const item = findItemById(id);
+        if (item) {
+            toggleItemSelection(id, true);
+        }
+    });
+    
+    showToast('Essential kit selected! Basic professional setup.', 'success');
+}
+
+// Select professional kit (comprehensive setup)
+function selectProfessionalKit() {
+    clearAllSelections();
+    
+    // Professional items: complete lighting, audio, power, essential accessories
+    const proIds = [1, 2, 3, 4, 5, 11, 12, 14, 16, 22]; // Complete lighting, mic, bag, Sony battery, USB-C power, memory, phone mount, tripod
+    
+    proIds.forEach(id => {
+        const item = findItemById(id);
+        if (item) {
+            toggleItemSelection(id, true);
+        }
+    });
+    
+    showToast('Professional kit selected! Complete production setup.', 'success');
+}
+
+// Update selection summary
+function updateSelectionSummary() {
+    const selectedItemsArray = Array.from(selectedItems).map(id => findItemById(id)).filter(Boolean);
+    const totalCost = selectedItemsArray.reduce((sum, item) => {
+        return sum + parseFloat(item.price.replace(' TND', '').replace(',', ''));
+    }, 0);
+    
+    // Update header
+    selectedTotalElement.textContent = `${totalCost.toLocaleString()} TND`;
+    selectedCountElement.querySelector('.count-value').textContent = `${selectedItems.size} items`;
+    
+    // Update summary panel
+    summaryItemCount.textContent = selectedItems.size;
+    summaryTotal.textContent = `${totalCost.toLocaleString()} TND`;
+    
+    // Update selected items list
+    if (selectedItemsArray.length === 0) {
+        selectedItemsList.innerHTML = '<p class="no-selection">No items selected. Click on product cards to add them to your selection.</p>';
+    } else {
+        selectedItemsList.innerHTML = `
+            <div class="selected-items-grid">
+                ${selectedItemsArray.map(item => `
+                    <div class="selected-item">
+                        <img src="${item.image}" alt="${item.name}" class="selected-item-image">
+                        <div class="selected-item-info">
+                            <h5 class="selected-item-name">${item.name}</h5>
+                            <span class="selected-item-price">${item.price}</span>
+                        </div>
+                        <button class="remove-item" onclick="toggleItemSelection(${item.id}, false)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+    
+    // Animate changes
+    selectedTotalElement.style.transform = 'scale(1.1)';
     setTimeout(() => {
-        totalCostElement.style.transform = 'scale(1)';
+        selectedTotalElement.style.transform = 'scale(1)';
     }, 200);
+}
+
+// Toggle summary panel
+function toggleSummaryPanel() {
+    const isCollapsed = summaryContent.classList.contains('collapsed');
+    summaryContent.classList.toggle('collapsed');
+    summaryToggle.querySelector('i').classList.toggle('fa-chevron-up');
+    summaryToggle.querySelector('i').classList.toggle('fa-chevron-down');
+}
+
+// Helper functions
+function getAllItems() {
+    const allItems = [];
+    Object.values(equipmentData).forEach(category => {
+        allItems.push(...category.items);
+    });
+    return allItems;
+}
+
+function findItemById(id) {
+    const allItems = getAllItems();
+    return allItems.find(item => item.id === id);
 }
 
 // Initialize filter functionality
@@ -120,9 +339,8 @@ function filterEquipment(filter) {
     currentFilter = filter;
     const cards = document.querySelectorAll('.equipment-card');
     const sections = document.querySelectorAll('.category-section');
-
+    
     if (filter === 'all') {
-        // Show all sections and cards
         sections.forEach(section => {
             section.style.display = 'block';
             section.classList.add('fade-in');
@@ -131,14 +349,12 @@ function filterEquipment(filter) {
             card.style.display = 'block';
         });
     } else {
-        // Hide/show sections based on filter
         sections.forEach(section => {
             const hasMatchingItems = section.querySelectorAll(`[data-category*="${filter}"]`).length > 0;
             if (hasMatchingItems) {
                 section.style.display = 'block';
                 section.classList.add('fade-in');
-
-                // Hide non-matching cards within visible sections
+                
                 const sectionCards = section.querySelectorAll('.equipment-card');
                 sectionCards.forEach(card => {
                     const cardCategory = card.dataset.category.toLowerCase();
@@ -162,14 +378,11 @@ function visitStore(url) {
 
 // Add to wishlist function
 function addToWishlist(itemId) {
-    // Get current wishlist from localStorage
     let wishlist = JSON.parse(localStorage.getItem('equipmentWishlist') || '[]');
-
+    
     if (!wishlist.includes(itemId)) {
         wishlist.push(itemId);
         localStorage.setItem('equipmentWishlist', JSON.stringify(wishlist));
-
-        // Show feedback
         showToast('Added to wishlist!', 'success');
     } else {
         showToast('Already in wishlist!', 'info');
@@ -178,13 +391,11 @@ function addToWishlist(itemId) {
 
 // Show toast notification
 function showToast(message, type = 'info') {
-    // Remove existing toast
     const existingToast = document.querySelector('.toast');
     if (existingToast) {
         existingToast.remove();
     }
-
-    // Create toast element
+    
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
     toast.style.cssText = `
@@ -201,11 +412,9 @@ function showToast(message, type = 'info') {
         font-weight: 500;
     `;
     toast.textContent = message;
-
-    // Add to body
+    
     document.body.appendChild(toast);
-
-    // Remove after 3 seconds
+    
     setTimeout(() => {
         if (toast) {
             toast.style.animation = 'slideOutRight 0.3s ease-in';
@@ -226,50 +435,9 @@ function addScrollAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     });
-
-    // Observe all equipment cards
+    
     document.querySelectorAll('.equipment-card').forEach(card => {
         observer.observe(card);
-    });
-}
-
-// Search functionality (bonus feature)
-function initializeSearch() {
-    const searchInput = document.createElement('input');
-    searchInput.type = 'text';
-    searchInput.placeholder = 'Search equipment...';
-    searchInput.className = 'search-input';
-    searchInput.style.cssText = `
-        width: 100%;
-        max-width: 400px;
-        padding: 0.75rem 1rem;
-        margin-bottom: 2rem;
-        border: 2px solid var(--border-color);
-        border-radius: 0.5rem;
-        font-size: 1rem;
-        transition: var(--transition-smooth);
-    `;
-
-    // Add to filters section
-    const filtersSection = document.querySelector('.filters');
-    filtersSection.parentNode.insertBefore(searchInput, filtersSection);
-
-    // Add search functionality
-    searchInput.addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll('.equipment-card');
-
-        cards.forEach(card => {
-            const name = card.querySelector('.card-name').textContent.toLowerCase();
-            const description = card.querySelector('.card-description').textContent.toLowerCase();
-            const features = card.querySelector('.card-features').textContent.toLowerCase();
-
-            if (name.includes(searchTerm) || description.includes(searchTerm) || features.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
     });
 }
 
@@ -286,7 +454,7 @@ style.textContent = `
             transform: translateX(0);
         }
     }
-
+    
     @keyframes slideOutRight {
         from {
             opacity: 1;
@@ -299,8 +467,3 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-
-// Initialize search on load
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(initializeSearch, 1000); // Add search after main content loads
-});

@@ -19,7 +19,7 @@ const equipmentData = {
       {
         id: 2,
         name: "Godox Stand H280",
-        price: "180 TND",
+        price: "114 TND",
         store: "Hollywood HTN",
         description: "Pied d'éclairage professionnel télescopique, hauteur max 280cm, capacité 5kg, 3 sections, alliage métallique robuste",
         image: "images/GODOX STAND H280.png",
@@ -39,7 +39,7 @@ const equipmentData = {
         features: ["95cm Octagonal", "Umbrella System", "Double Diffusers", "Honeycomb Grid", "Bowens Mount"]
       }
     ],
-    total: "1,310 TND"
+    total: "1,244 TND"
   },
 
   // High Priority - Audio
@@ -50,7 +50,7 @@ const equipmentData = {
       {
         id: 4,
         name: "Hollyland LARK M2 Combo",
-        price: "420 TND",
+        price: "580 TND",
         store: "Hollywood HTN",
         description: "Micro sans fil professionnel ultra-compact, transmission 2.4GHz stable, portée 300m, multiples émetteurs, recharge USB-C",
         image: "images/HOLLYLAND LARK M2 COMBO.png",
@@ -59,7 +59,7 @@ const equipmentData = {
         features: ["2.4GHz Digital", "300m Range", "Multiple Transmitters", "USB-C Charging", "Professional Audio"]
       }
     ],
-    total: "420 TND"
+    total: "580 TND"
   },
 
   // Medium Priority - Storage & Transport
@@ -70,7 +70,7 @@ const equipmentData = {
       {
         id: 5,
         name: "SAC DE TRANSPORT GODOX CB-05",
-        price: "75 TND",
+        price: "122 TND",
         store: "Hollywood HTN",
         description: "Sac professionnel robuste pour équipements d'éclairage, compartiments rembourrés, poignées renforcées, bandoulière ajustable",
         image: "images/SAC DE TRANSPORT GODOX CB05.png",
@@ -81,7 +81,7 @@ const equipmentData = {
       {
         id: 6,
         name: "VALISE DE TRANSPORT GODOX CB-06",
-        price: "150 TND",
+        price: "248 TND",
         store: "Hollywood HTN",
         description: "Valise à roulettes pour kit 3 lampes, dimensions 94x34x25cm, compartiments modulables, poignée télescopique",
         image: "images/VALISE DE TRANSPORT GODOX A ROULETTE CB-06.png",
@@ -90,7 +90,7 @@ const equipmentData = {
         features: ["Rolling Wheels", "3 Light Kit Capacity", "Modular Compartments", "94x34x25cm", "Telescopic Handle"]
       }
     ],
-    total: "225 TND"
+    total: "370 TND"
   },
 
   // Medium Priority - Power & Memory
@@ -101,7 +101,7 @@ const equipmentData = {
       {
         id: 7,
         name: "CHARGEUR SONY BC-VW1",
-        price: "95 TND",
+        price: "77 TND",
         store: "Hollywood HTN",
         description: "Chargeur secteur Sony pour batteries NP-FW50, entrée 100-240V, charge en 4.2h, indicateur LED, compatible Alpha et NEX",
         image: "images/CHARGEUR SONY BC-VW1.png",
@@ -112,7 +112,7 @@ const equipmentData = {
       {
         id: 8,
         name: "Chargeur PATONA Panasonic",
-        price: "65 TND",
+        price: "60 TND",
         store: "Splash Distribution",
         description: "Chargeur PATONA pour batteries Panasonic VW-VBT190/380, alternative économique, qualité professionnelle",
         image: "images/cHARGEUR PATONA PANASONIC 1938 VW-VBT190 380.png",
@@ -123,7 +123,7 @@ const equipmentData = {
       {
         id: 9,
         name: "Batterie PATONA NP-FW50",
-        price: "30 TND",
+        price: "70 TND",
         store: "Splash Distribution",
         description: "Batterie compatible Sony Alpha, 1030mAh, qualité premium avec protection intégrée",
         image: "images/BATTERIE PATONA 1079 NP-FW50.png",
@@ -134,7 +134,7 @@ const equipmentData = {
       {
         id: 10,
         name: "Batterie PATONA Platinum NP-FW50",
-        price: "45 TND",
+        price: "110 TND",
         store: "Splash Distribution",
         description: "Batterie premium PATONA Platinum NP-FW50, qualité supérieure, longue durée de vie, protection avancée",
         image: "images/BATTERIE PATONA PLATINUM 1362 S NP-FW50.png",
@@ -145,7 +145,7 @@ const equipmentData = {
       {
         id: 11,
         name: "Batterie Sony NP-FW50",
-        price: "120 TND",
+        price: "140 TND",
         store: "Hollywood HTN",
         description: "Batterie officielle Sony NP-FW50, qualité originale, performance garantie, compatible Alpha",
         image: "images/BATTERIE SONY NP-FW50.png",
@@ -156,7 +156,7 @@ const equipmentData = {
       {
         id: 12,
         name: "Batterie PATONA Premium Coupler USB-C",
-        price: "55 TND",
+        price: "110 TND",
         store: "Splash Distribution",
         description: "Batterie externe avec câble USB-C, alimentation continue, parfaite pour longs tournages",
         image: "images/BATTERIE PATONA 9413 PREMIUM COUPLER USB-C NP-FW50.png",
@@ -167,7 +167,7 @@ const equipmentData = {
       {
         id: 13,
         name: "Neewer TNP-FW50 Battery",
-        price: "35 TND",
+        price: "143 TND",
         store: "Hollywood HTN",
         description: "Batterie Neewer TNP-FW50 1030mAh, remplacement compatible, qualité fiable",
         image: "images/NEEWER TNP-FW50 1030mAh NP-FW50 REPLACEMENT CAMERA BATTERY FOR SONY (10103381).png",
@@ -178,7 +178,7 @@ const equipmentData = {
       {
         id: 14,
         name: "SanDisk SDHC Ultra 32GB",
-        price: "40 TND",
+        price: "60 TND",
         store: "Hollywood HTN",
         description: "Carte mémoire SDHC Ultra 140MB/s, 32Go, parfaite pour photo et vidéo 4K",
         image: "images/SANDISK CARTE MEMOIRE SDHC ULTRA 140MB S 32 GO.png",
@@ -187,7 +187,7 @@ const equipmentData = {
         features: ["32GB Capacity", "140MB/s Speed", "4K Ready", "SanDisk Quality"]
       }
     ],
-    total: "485 TND"
+    total: "770 TND"
   },
 
   // Lower Priority - Accessories
@@ -198,7 +198,7 @@ const equipmentData = {
       {
         id: 15,
         name: "SUPER CLEANING KIT",
-        price: "25 TND",
+        price: "35 TND",
         store: "Hollywood HTN",
         description: "Kit complet 14 pièces: souffleur d'air, stylo nettoyage, chiffons microfibre, solution nettoyante, gants antistatiques",
         image: "images/SUPER CLEANING KIT.png",
@@ -209,7 +209,7 @@ const equipmentData = {
       {
         id: 16,
         name: "Neewer Smartphone Holder SP-02",
-        price: "30 TND",
+        price: "113 TND",
         store: "Hollywood HTN",
         description: "Support smartphone pour trépied, adaptateur universel, rotation 360°, compatible tous smartphones",
         image: "images/NEEWER SP-02 SMARTPHONE HOLDER TRIPOD MOUNT ADAPTER (10103410).png",
@@ -231,7 +231,7 @@ const equipmentData = {
       {
         id: 18,
         name: "Lecteur Carte EMTEC T610C",
-        price: "35 TND",
+        price: "85 TND",
         store: "Hollywood HTN",
         description: "Lecteur de carte EMTEC T610C, micro SD/SD/CompactFlash, UHS-1, qualité professionnelle",
         image: "images/Lecteur De Carte Mémoire EMTEC T610C  Micro SD – Carte SD – Compact Flash – UHS 1.png",
@@ -242,7 +242,7 @@ const equipmentData = {
       {
         id: 19,
         name: "Kit Accessoires GoPro 50-en-1",
-        price: "85 TND",
+        price: "117 TND",
         store: "Hollywood HTN",
         description: "Kit complet GoPro: supports, fixations, étuis, câbles, parfait pour sports extrêmes et aventure",
         image: "images/KIT ACCESSOIRES GOPRO 50 EN 1.png",
@@ -251,7 +251,7 @@ const equipmentData = {
         features: ["50 Accessories", "Multiple Mounts", "Protective Case", "Complete Set"]
       }
     ],
-    total: "200 TND"
+    total: "375 TND"
   },
 
   // Lower Priority - Streaming & Background
@@ -262,7 +262,7 @@ const equipmentData = {
       {
         id: 20,
         name: "Fond Chroma 3x5m",
-        price: "110 TND",
+        price: "175 TND",
         store: "Hollywood HTN",
         description: "Fond vert professionnel 3x5m, parfait pour incrustation, studio photo/vidéo",
         image: "images/FOND CHROMA 3X5m.png",
@@ -273,7 +273,7 @@ const equipmentData = {
       {
         id: 21,
         name: "Support Fond Trépied",
-        price: "80 TND",
+        price: "295 TND",
         store: "Hollywood HTN",
         description: "Support trépied pour fond, hauteur ajustable, stable, installation rapide",
         image: "images/SUPPORT FOND TREPIED.png",
@@ -295,7 +295,7 @@ const equipmentData = {
       {
         id: 23,
         name: "Carte Capture HDMI USB",
-        price: "55 TND",
+        price: "65 TND",
         store: "Hollywood HTN",
         description: "Carte capture vidéo HDMI vers USB, streaming HD 1080p, plug and play",
         image: "images/CARTE DE CAPTURE VIDEO HDMI A USB DIFFUSION HD 1080P.png",
@@ -306,7 +306,7 @@ const equipmentData = {
       {
         id: 24,
         name: "Câble HDMI 4K 2.0m",
-        price: "15 TND",
+        price: "55 TND",
         store: "Tunisia Net",
         description: "Câble HDMI haute qualité 4K, 2 mètres, compatible tous appareils HDMI",
         image: "images/Câble HDMI vers HDMI 4K 20M.png",
@@ -317,7 +317,7 @@ const equipmentData = {
       {
         id: 25,
         name: "Adaptateur HDMI vers Micro HDMI",
-        price: "12 TND",
+        price: "3 TND",
         store: "2B Trading",
         description: "Adaptateur HDMI femelle vers micro HDMI, compact, parfait pour Raspberry Pi",
         image: "images/Adaptateur HDMI FEMELLE VERS Micro HDMI.png",
@@ -326,7 +326,7 @@ const equipmentData = {
         features: ["HDMI to Micro HDMI", "Compact Design", "Raspberry Pi Compatible", "Reliable Connection"]
       }
     ],
-    total: "467 TND"
+    total: "788 TND"
   },
 
   // Lowest Priority - Phone Protection
@@ -337,7 +337,7 @@ const equipmentData = {
       {
         id: 26,
         name: "Protection Caméra iPhone 13 Pro",
-        price: "8 TND",
+        price: "30 TND",
         store: "iTech Store",
         description: "Protection objectif caméra iPhone 13 Pro, verre trempé, installation facile",
         image: "images/Protection caméra iPhone 13 Pro.png",
@@ -348,7 +348,7 @@ const equipmentData = {
       {
         id: 27,
         name: "Film Protection Privacy iPhone 13 Pro Max",
-        price: "12 TND",
+        price: "20 TND",
         store: "iTech Store",
         description: "Film protection écran avec filtre confidentialité, anti-regard, iPhone 13 Pro Max",
         image: "images/Film De Protection Privacy iPhone 13 Pro Max Caisles.png",
@@ -357,7 +357,7 @@ const equipmentData = {
         features: ["Privacy Filter", "iPhone 13 Pro Max", "Anti-Glare", "Screen Protection"]
       }
     ],
-    total: "20 TND"
+    total: "50 TND"
   }
 };
 
@@ -374,25 +374,25 @@ const calculateTotalCost = () => {
 // Get minimum cost per category (choosing cheapest alternatives)
 const getMinimumCostPerCategory = () => {
   return {
-    lighting: 1310, // No alternatives - all 3 items needed
-    audio: 420,     // No alternatives
-    storage: 75,    // Choose CB-05 (75 TND) over CB-06 (150 TND)
+    lighting: 1244, // All 3 items required (850 + 114 + 280)
+    audio: 580,     // Only option
+    storage: 122,   // Choose CB-05 (122 TND) over CB-06 (248 TND)
     power: {
-      charger: 65,  // Choose PATONA Panasonic (65 TND) over Sony (95 TND)
-      battery: 30,  // Choose PATONA basic (30 TND) over Platinum (45 TND) or Sony (120 TND)
-      wired: 35,    // Choose Neewer (35 TND) over PATONA Coupler (55 TND)
-      memory: 40,   // SanDisk 32GB (only option)
-      total: 170
+      charger: 60,  // Choose PATONA Panasonic (60 TND) over Sony (77 TND)
+      battery: 70,  // Choose PATONA basic (70 TND) over Platinum (110 TND) or Sony (140 TND)
+      wired: 110,   // Choose PATONA Coupler (110 TND) over Neewer (143 TND)
+      memory: 60,   // SanDisk 32GB (only option)
+      total: 300
     },
     accessories: {
-      cleaning: 25,     // Only option
-      phone_holder: 30, // Only option
-      card_reader: 25,  // Choose Pisen (25 TND) over EMTEC (35 TND)
-      gopro: 85,        // Only option
-      total: 165
+      cleaning: 35,     // Only option
+      phone_holder: 113, // Only option
+      card_reader: 25,  // Choose Pisen (25 TND) over EMTEC (85 TND)
+      gopro: 117,       // Only option
+      total: 290
     },
-    streaming: 467, // All items needed, no alternatives
-    phone: 20      // Both items needed
+    streaming: 788, // All items needed, no alternatives
+    phone: 50       // Both items needed
   };
 };
 

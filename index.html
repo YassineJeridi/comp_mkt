@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <header class="header">
         <div class="container">
@@ -16,9 +18,13 @@
                 Equipment Pro Store
             </h1>
             <div class="header-info">
+                <div class="selected-count" id="selectedCount">
+                    <span class="count-label">Selected:</span>
+                    <span class="count-value">0 items</span>
+                </div>
                 <div class="total-cost">
-                    <span class="cost-label">Total Estimate:</span>
-                    <span class="cost-value" id="totalCost">0 TND</span>
+                    <span class="cost-label">Selected Total:</span>
+                    <span class="cost-value" id="selectedTotal">0 TND</span>
                 </div>
             </div>
         </div>
@@ -28,7 +34,55 @@
         <div class="container">
             <div class="intro-section">
                 <h2>Professional Video & Photography Equipment</h2>
-                <p>Complete equipment list organized by priority - from essential lighting to accessories</p>
+                <p>Select equipment to build your custom configuration - from essential lighting to accessories</p>
+            </div>
+
+            <!-- Summary Panel -->
+            <div class="summary-panel" id="summaryPanel">
+                <div class="summary-header">
+                    <h3><i class="fas fa-calculator"></i> Selection Summary</h3>
+                    <button class="btn-toggle" id="summaryToggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                </div>
+                <div class="summary-content" id="summaryContent">
+                    <div class="summary-stats">
+                        <div class="stat">
+                            <span class="stat-label">Items Selected</span>
+                            <span class="stat-value" id="summaryItemCount">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Total Cost</span>
+                            <span class="stat-value" id="summaryTotal">0 TND</span>
+                        </div>
+                    </div>
+                    <div class="selected-items" id="selectedItemsList">
+                        <p class="no-selection">No items selected. Click on product cards to add them to your selection.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selection Controls -->
+            <div class="selection-controls">
+                <div class="bulk-actions">
+                    <button class="bulk-btn" id="selectAllBtn">
+                        <i class="fas fa-check-double"></i>
+                        Select All
+                    </button>
+                    <button class="bulk-btn" id="selectNoneBtn">
+                        <i class="fas fa-times-circle"></i>
+                        Clear Selection
+                    </button>
+                    <button class="bulk-btn preset-btn" id="essentialPreset">
+                        <i class="fas fa-star"></i>
+                        Essential Kit
+                    </button>
+                    <button class="bulk-btn preset-btn" id="proPreset">
+                        <i class="fas fa-crown"></i>
+                        Professional Kit
+                    </button>
+                </div>
             </div>
 
             <div class="filters">
@@ -38,6 +92,8 @@
                 <button class="filter-btn" data-filter="storage">Storage</button>
                 <button class="filter-btn" data-filter="power">Power</button>
                 <button class="filter-btn" data-filter="accessories">Accessories</button>
+                <button class="filter-btn" data-filter="streaming">Streaming</button>
+                <button class="filter-btn" data-filter="phone">Phone</button>
             </div>
 
             <div id="equipmentContainer" class="equipment-container">
@@ -55,4 +111,5 @@
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
