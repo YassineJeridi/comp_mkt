@@ -53,8 +53,8 @@ const equipmentData = {
         price: "580 TND",
         store: "Hollywood HTN",
         description: "Micro sans fil professionnel ultra-compact, transmission 2.4GHz stable, portée 300m, multiples émetteurs, recharge USB-C",
-        image: "images/HOLLYLAND LARK M2 COMBO.png",
-        url: "https://hollywood.tn/product/hollyland-lark-m2-combo/",
+        image: "images/HOLLYLAND LARK M2.png",
+        url: "HOLLYLAND LARK M2",
         category: "Wireless Microphone",
         features: ["2.4GHz Digital", "300m Range", "Multiple Transmitters", "USB-C Charging", "Professional Audio"]
       }
