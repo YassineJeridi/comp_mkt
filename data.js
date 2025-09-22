@@ -117,7 +117,7 @@ const equipmentData = {
         description: "Chargeur PATONA pour batteries Panasonic VW-VBT190/380, alternative économique, qualité professionnelle",
         image: "images/cHARGEUR PATONA PANASONIC 1938 VW-VBT190 380.png",
         url: "https://www.splash-distribution.com/accueil/1117-chargeur-patona-panasonic-1938-vw-vbt190380.html",
-        category: "Battery Charger",
+        category: "Battery Charger Alternative",
         features: ["Panasonic Compatible", "Professional Quality", "Economic Alternative", "Reliable Performance"]
       },
       {
@@ -219,17 +219,6 @@ const equipmentData = {
       },
       {
         id: 17,
-        name: "AMH LED Tube TC-210 RGB",
-        price: "165 TND",
-        store: "Hollywood HTN",
-        description: "Tube LED RGB professionnel, contrôle couleur complet, effets cinéma, télécommande incluse",
-        image: "images/AMH TUBE LIGHT TC-210 RGB-W.png",
-        url: "https://hollywood.tn/product/amh-tube-light-tc-210-rgb-w/",
-        category: "RGB LED Tube",
-        features: ["Full RGB Control", "Cinema Effects", "Remote Control", "Professional Grade"]
-      },
-      {
-        id: 18,
         name: "Lecteur Carte Pisen 3-en-1",
         price: "25 TND",
         store: "Hollywood HTN",
@@ -240,7 +229,7 @@ const equipmentData = {
         features: ["USB 3.2", "SD/TF/CF Support", "Fast Transfer", "Compact Design"]
       },
       {
-        id: 19,
+        id: 18,
         name: "Lecteur Carte EMTEC T610C",
         price: "35 TND",
         store: "Hollywood HTN",
@@ -251,7 +240,7 @@ const equipmentData = {
         features: ["Multi-Format", "UHS-1 Support", "Professional Grade", "CompactFlash Compatible"]
       },
       {
-        id: 20,
+        id: 19,
         name: "Kit Accessoires GoPro 50-en-1",
         price: "85 TND",
         store: "Hollywood HTN",
@@ -262,7 +251,7 @@ const equipmentData = {
         features: ["50 Accessories", "Multiple Mounts", "Protective Case", "Complete Set"]
       }
     ],
-    total: "365 TND"
+    total: "200 TND"
   },
 
   // Lower Priority - Streaming & Background
@@ -271,7 +260,7 @@ const equipmentData = {
     priority: 6,
     items: [
       {
-        id: 21,
+        id: 20,
         name: "Fond Chroma 3x5m",
         price: "110 TND",
         store: "Hollywood HTN",
@@ -282,7 +271,7 @@ const equipmentData = {
         features: ["3x5m Size", "Professional Grade", "Chroma Key", "Studio Quality"]
       },
       {
-        id: 22,
+        id: 21,
         name: "Support Fond Trépied",
         price: "80 TND",
         store: "Hollywood HTN",
@@ -293,7 +282,7 @@ const equipmentData = {
         features: ["Adjustable Height", "Quick Setup", "Stable Design", "Professional Use"]
       },
       {
-        id: 23,
+        id: 22,
         name: "King Joy Trépied VT-890H",
         price: "195 TND",
         store: "Hollywood HTN",
@@ -304,7 +293,7 @@ const equipmentData = {
         features: ["Fluid Head", "Professional Grade", "Camera Support", "Adjustable Legs"]
       },
       {
-        id: 24,
+        id: 23,
         name: "Carte Capture HDMI USB",
         price: "55 TND",
         store: "Hollywood HTN",
@@ -315,7 +304,7 @@ const equipmentData = {
         features: ["HDMI to USB", "1080p HD", "Plug & Play", "Streaming Ready"]
       },
       {
-        id: 25,
+        id: 24,
         name: "Câble HDMI 4K 2.0m",
         price: "15 TND",
         store: "Tunisia Net",
@@ -326,7 +315,7 @@ const equipmentData = {
         features: ["4K Support", "2m Length", "High Quality", "Universal Compatible"]
       },
       {
-        id: 26,
+        id: 25,
         name: "Adaptateur HDMI vers Micro HDMI",
         price: "12 TND",
         store: "2B Trading",
@@ -346,7 +335,7 @@ const equipmentData = {
     priority: 7,
     items: [
       {
-        id: 27,
+        id: 26,
         name: "Protection Caméra iPhone 13 Pro",
         price: "8 TND",
         store: "iTech Store",
@@ -357,7 +346,7 @@ const equipmentData = {
         features: ["Tempered Glass", "iPhone 13 Pro", "Easy Installation", "Camera Safe"]
       },
       {
-        id: 28,
+        id: 27,
         name: "Film Protection Privacy iPhone 13 Pro Max",
         price: "12 TND",
         store: "iTech Store",
@@ -398,10 +387,9 @@ const getMinimumCostPerCategory = () => {
     accessories: {
       cleaning: 25,     // Only option
       phone_holder: 30, // Only option
-      led_tube: 165,    // Only option (missing from images - would need to be added)
       card_reader: 25,  // Choose Pisen (25 TND) over EMTEC (35 TND)
       gopro: 85,        // Only option
-      total: 330
+      total: 165
     },
     streaming: 467, // All items needed, no alternatives
     phone: 20      // Both items needed
